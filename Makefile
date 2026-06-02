@@ -6,7 +6,7 @@ install:
 lint:
 	npm run lint:contracts
 
-mock: mock-iot
+mock: mock-vision
 
 mock-iot:
 	npm run mock:iot

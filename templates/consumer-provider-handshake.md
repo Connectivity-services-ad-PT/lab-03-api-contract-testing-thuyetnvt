@@ -1,57 +1,71 @@
-# Consumer–Provider Handshake
+# Consumer-Provider Handshake
 
-## Thông tin chung
+## General Information
 
 - Lab: FIT4110 Lab 03
-- Ngày:
-- Provider team:
-- Consumer team:
-- Provider service:
-- Consumer service:
+- Date: 2026-06-02
+- Provider team: AI Vision (B4)
+- Consumer team: Camera Stream (B2)
+- Provider service: ai-vision
+- Consumer service: camera-stream
 
 ## Contract
 
-- Contract file:
-- Mock base URL:
-- Auth method:
-- Endpoint được test:
+- Contract file: `contracts/ai-vision.openapi.yaml`
+- Mock base URL: `http://localhost:4010`
+- Auth method: Bearer token via `Authorization: Bearer {{authToken}}`
+- Tested endpoint: `POST /vision/detect`
 
-## Smoke test
+## Smoke Test
 
 ### Request
 
 ```http
-METHOD /path
+POST /vision/detect
 Authorization: Bearer <token>
 Content-Type: application/json
 ```
 
 ```json
 {
+  "cameraId": "CAM-B2-001",
+  "correlationId": "corr-camera-smoke-0001",
+  "capturedAt": "2026-05-19T03:30:00Z",
+  "imageUrl": "https://storage.smart-campus.local/frames/cam-b2-001/smoke.jpg",
+  "motionScore": 0.87,
+  "priority": "high"
 }
 ```
 
-### Expected response
+### Expected Response
 
 ```json
 {
+  "detectionId": "det-20260519-0001",
+  "correlationId": "corr-20260519-0001",
+  "status": "completed",
+  "riskLevel": "high",
+  "confidence": 0.94,
+  "objects": []
 }
 ```
 
-## Kết quả
+## Result
 
-- [ ] Consumer gọi mock thành công.
-- [ ] Consumer parse được field cần dùng.
-- [ ] Consumer hiểu lỗi 4xx/5xx provider trả về.
-- [ ] Có Newman report hoặc screenshot.
+- [x] Consumer can call provider mock successfully.
+- [x] Consumer can parse required fields: `detectionId`, `riskLevel`, `confidence`.
+- [x] Consumer understands provider 4xx/5xx errors through Problem Details.
+- [x] Newman report or CLI log is available in `reports/`.
 
-## Ghi chú thay đổi hợp đồng
+## Contract Change Notes
 
-| Nội dung | Trước | Sau | Người đồng ý |
+| Item | Before | After | Agreed by |
 |---|---|---|---|
-| | | | |
+| Detect endpoint | Lab 3 sample used `/detect` | Lab 2 contract uses `/vision/detect` | Provider + Consumer |
+| Request fields | Lab 3 sample used `camera_id`, `image_url` | Lab 2 contract uses `cameraId`, `correlationId`, `capturedAt`, `imageUrl`, `motionScore` | Provider + Consumer |
+| Error response | Generic sample errors | `application/problem+json` from Lab 2 contract | Provider + Consumer |
 
-## Xác nhận
+## Sign-off
 
-- Provider representative:
-- Consumer representative:
+- Provider representative: AI Vision (B4) - agreed
+- Consumer representative: Camera Stream (B2) - agreed

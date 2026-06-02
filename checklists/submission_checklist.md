@@ -1,28 +1,25 @@
-# Submission Checklist — Lab 03
+# Submission Checklist - Lab 03
 
-Trước khi nộp, repo nhóm cần có:
+Before submission, this repo should include:
 
 ```text
-contracts/<team>.openapi.yaml
-postman/collections/<team>.postman_collection.json
-postman/environments/<team>_mock.postman_environment.json
-postman/environments/<team>_local.postman_environment.json
-reports/newman-report.xml hoặc reports/newman-report.html
+contracts/ai-vision.openapi.yaml
+postman/collections/FIT4110_lab03_ai_vision.postman_collection.json
+postman/environments/FIT4110_lab03_mock.postman_environment.json
+postman/environments/FIT4110_lab03_local.postman_environment.json
+reports/newman-report-mock.xml or reports/newman-report.html
+reports/contract-lint-report.txt
 checklists/reliability_checklist.md
 templates/test-case-matrix.csv
 templates/consumer-provider-handshake.md
 ```
 
-## Quy ước commit
-
-Gợi ý commit cuối:
+## Final commit suggestion
 
 ```bash
 git add .
-git commit -m "lab03: add postman contract tests and newman report"
+git commit -m "lab03: add ai vision contract tests and newman report"
 git push
 ```
 
-## Link nộp LMS
-
-Nộp link GitHub repo, không nộp file rời.
+Submit the GitHub repository link on LMS.

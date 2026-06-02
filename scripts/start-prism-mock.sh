@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-MODE="${1:-iot}"
+MODE="${1:-vision}"
 
 case "${MODE}" in
   iot)
-    npx prism mock contracts/iot-ingestion.openapi.yaml -p 4010 --host 0.0.0.0
+    npx prism mock contracts/iot-ingestion.openapi.yaml -p 4011 --host 0.0.0.0
     ;;
   vision)
-    npx prism mock contracts/ai-vision.openapi.yaml -p 4011 --host 0.0.0.0
+    npx prism mock contracts/ai-vision.openapi.yaml -p 4010 --host 0.0.0.0
     ;;
   all)
     npm run mock:iot &
@@ -19,7 +19,7 @@ case "${MODE}" in
     wait
     ;;
   *)
-    echo "Usage: scripts/start-prism-mock.sh [iot|vision|all]"
+    echo "Usage: scripts/start-prism-mock.sh [vision|iot|all]"
     exit 1
     ;;
 esac
